@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <style>
+        body{
+            display: flex;
+             flex-direction: column;  
+            align-items:center;          
+            justify-content: center;            
+            min-height: 100vh;
+            margin:0;
+            gap:40px;
+            background-color: rgb(130, 96, 161);
+           
+        }
+        input,button{
+            font-size: 50px;
+            border-radius: 30px;
+            text-overflow: hidden;
+            font-display: block;
+            padding: 12px;
+            margin:0;
+            border:none
+            
+        }
+        #list{
+            font-size: 50px;
+            border-radius: 30px;
+            text-overflow: hidden;
+            display:flex;
+            flex-direction:column ;
+            padding: 12px;
+            margin:0;
+            border:none;
+            color:white;
+        }
+        #top {
+            display: flex;
+            flex-direction: row;  /* input and button side by side */
+            gap: 40px;
+        }
+        #list li{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.15);
+            margin-bottom: 15px;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+        .deleteBtn{
+            background: none;
+            border: none;
+            font-size: 35px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="top">
+    <input id="input" placeholder="Enter Task" type="text">
+    <button id="button" >Add Task</button>
+    </div>
+    <ul id="list"></ul>
+    <script>
+        document.getElementById("button").addEventListener("click",function(){
+            //<!-- var item=document.createElement("li")
+            //oh so li not simply a text it a code to say which type of element is actually created
+            //item.innerText = document.getElementById("input").value
+            //document.getElementById("input").value = ""
+            //document.getElementById("list").appendChild(item) -->
+        
+            var input = document.getElementById("input")
+            if(input.value === "") return  // don't add empty tasks
+
+            var item = document.createElement("li")
+            item.innerText = input.value
+
+            var deleteBtn = document.createElement("button")
+            deleteBtn.innerText = "❌"
+            deleteBtn.className = "deleteBtn"
+            deleteBtn.addEventListener("click", function(){
+                item.remove()
+            })
+
+            item.appendChild(deleteBtn)
+            document.getElementById("list").appendChild(item)
+            input.value = ""
+
+
+        })
+    </script>
+</body>
+</html>
